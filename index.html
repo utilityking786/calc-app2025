@@ -23,7 +23,337 @@
             background-color: #f0f4f8;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: flex-start;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Calculator & Live Currency Converter - Ready for AdSense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .btn {
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            padding: 20px;
+            font-size: 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover { background-color: #e5e7eb; }
+        .operator { background-color: #fca5a5; color: white; }
+        .operator:hover { background-color: #ef4444; }
+        .equal { background-color: #10b981; color: white; grid-column: span 2; }
+        .equal:hover { background-color: #059669; }
+        .clear { background-color: #9ca3af; color: white; }
+        .clear:hover { background-color: #6b7280; }
+        .display {
+            grid-column: 1 / -1;
+            background-color: #1f2937;
+            color: #ffffff;
+            text-align: right;
+            padding: 20px;
+            font-size: 2.5rem;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 md:p-10">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Online Multi-Purpose Calculator & Converter</h1>
+
+        <!-- CALCULATOR INTERFACE -->
+        <div class="calculator-grid max-w-sm mx-auto p-4 bg-gray-200 rounded-xl shadow-inner">
+            <div id="display" class="display">0</div>
+            <button class="btn clear" onclick="clearDisplay()">AC</button>
+            <button class="btn operator" onclick="appendToDisplay('/')">/</button>
+            <button class="btn operator" onclick="appendToDisplay('*')">*</button>
+            <button class="btn" onclick="appendToDisplay('7')">7</button>
+            <button class="btn" onclick="appendToDisplay('8')">8</button>
+            <button class="btn" onclick="appendToDisplay('9')">9</button>
+            <button class="btn operator" onclick="appendToDisplay('-')">-</button>
+            <button class="btn" onclick="appendToDisplay('4')">4</button>
+            <button class="btn" onclick="appendToDisplay('5')">5</button>
+            <button class="btn" onclick="appendToDisplay('6')">6</button>
+            <button class="btn operator" onclick="appendToDisplay('+')">+</button>
+            <button class="btn" onclick="appendToDisplay('1')">1</button>
+            <button class="btn" onclick="appendToDisplay('2')">2</button>
+            <button class="btn" onclick="appendToDisplay('3')">3</button>
+            <button class="btn operator" onclick="calculateResult()">=</button>
+            <button class="btn" onclick="appendToDisplay('0')">0</button>
+            <button class="btn" onclick="appendToDisplay('.')">.</button>
+            <button class="btn equal" onclick="calculateResult()">Enter</button>
+        </div>
+        <!-- END CALCULATOR INTERFACE -->
+
+
+        <!-- CURRENCY CONVERTER INTERFACE -->
+        <div class="mt-12 p-6 bg-blue-50 rounded-xl shadow-lg border border-blue-200">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">Live Currency Converter (Mudrantaar)</h2>
+            
+            <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 items-center justify-center">
+                <!-- Amount Input -->
+                <input type="number" id="amount" placeholder="Amount (Rakam)" class="w-full md:w-1/3 p-3 border border-gray-300 rounded-lg text-lg focus:ring-blue-500 focus:border-blue-500" value="100">
+                
+                <!-- From Currency Select - Added BHD, AED, SAR -->
+                <select id="from-currency" class="w-full md:w-1/4 p-3 border border-gray-300 rounded-lg text-lg bg-white">
+                    <option value="INR" selected>INR - Indian Rupee</option>
+                    <option value="PKR">PKR - Pakistani Rupee</option>
+                    <option value="BHD">BHD - Bahraini Dinar</option>
+                    <option value="AED">AED - UAE Dirham</option>
+                    <option value="SAR">SAR - Saudi Riyal</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                </select>
+
+                <!-- Swap Button (Optional, but good UX) -->
+                <button id="swap-btn" type="button" class="p-3 text-blue-600 hover:text-blue-800 transition duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 10H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                </button>
+
+                <!-- To Currency Select - Added BHD, AED, SAR -->
+                <select id="to-currency" class="w-full md:w-1/4 p-3 border border-gray-300 rounded-lg text-lg bg-white">
+                    <option value="USD" selected>USD - US Dollar</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="PKR">PKR - Pakistani Rupee</option>
+                    <option value="BHD">BHD - Bahraini Dinar</option>
+                    <option value="AED">AED - UAE Dirham</option>
+                    <option value="SAR">SAR - Saudi Riyal</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                </select>
+            </div>
+            
+            <button onclick="convertCurrency()" class="w-full mt-6 p-4 bg-blue-600 text-white font-bold text-xl rounded-lg hover:bg-blue-700 transition duration-150 shadow-md">
+                Convert (Badlein)
+            </button>
+
+            <div id="conversion-result" class="mt-6 p-4 bg-white rounded-lg border border-blue-300 text-center text-2xl font-extrabold text-gray-800 min-h-[60px] flex items-center justify-center">
+                Result (Nateeja)
+            </div>
+            <div id="conversion-loading" class="text-center text-sm text-blue-500 mt-2 hidden">
+                Fetching live rates... (Live rates laa rahe hain...)
+            </div>
+            <div id="conversion-citation" class="text-center text-xs text-gray-500 mt-2"></div>
+        </div>
+        <!-- END CURRENCY CONVERTER INTERFACE -->
+        
+        
+        <!-- AD-FRIENDLY CONTENT SECTIONS -->
+        <div class="mt-12 space-y-8 p-4 border-t border-gray-200">
+            
+            <section>
+                <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">What is a Modern Web Calculator?</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    A calculator is an essential digital tool designed to perform mathematical operations, ranging from simple arithmetic (addition, subtraction, multiplication, division) to more complex scientific functions. This modern web-based calculator provides instant and accurate results for everyday calculations. Unlike physical calculators, our online tool is accessible on any device, ensuring you can quickly solve problems whether you are at home, in the office, or studying.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">How to Use This Calculator (Instructions)</h2>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                    <li>**Enter Numbers:** Click the number buttons (0-9) to input your values into the display screen.</li>
+                    <li>**Select Operation:** Click an operator button (e.g., '+', '-', '*', or '/') to choose the mathematical function you need.</li>
+                    <li>**Continue Input:** Enter the second number for your calculation.</li>
+                    <li>**Get Result:** Click the **'='** or **'Enter'** button to see the final solution on the display.</li>
+                    <li>**Clear Screen:** Use the **'AC'** (All Clear) button to erase the current calculation and start a new one.</li>
+                </ol>
+                <p class="mt-4 text-sm text-gray-500">
+                    This calculator supports floating point numbers (decimals) and standard order of operations.
+                </p>
+            </section>
+        </div>
+        <!-- END CONTENT SECTIONS -->
+
+    </div>
+
+    <script>
+        // --- CALCULATOR LOGIC ---
+        let currentInput = '';
+        let displayElement = document.getElementById('display');
+
+        function updateDisplay(value) {
+            displayElement.textContent = value;
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            updateDisplay('0');
+        }
+
+        function appendToDisplay(value) {
+            if (displayElement.textContent === 'Error' || displayElement.textContent === '0') {
+                if (value === '.') {
+                    currentInput = '0.';
+                } else if (value !== '+' && value !== '-' && value !== '*' && value !== '/') {
+                    currentInput = value;
+                }
+            } else {
+                currentInput += value;
+            }
+            updateDisplay(currentInput);
+        }
+
+        function calculateResult() {
+            try {
+                // Use a safer eval method for calculations
+                const result = new Function('return ' + currentInput)();
+                currentInput = String(result);
+                updateDisplay(currentInput);
+            } catch (error) {
+                updateDisplay('Error');
+                console.error("Calculation Error:", error);
+            }
+        }
+        
+        // Initialize calculator display
+        clearDisplay();
+        
+        // --- CURRENCY CONVERTER LOGIC (Using Gemini API for Live Rates) ---
+
+        // Gemini API configuration
+        const apiKey = ""; // API key is handled by the platform
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        // Function with Exponential Backoff for robust API calls
+        async function fetchWithExponentialBackoff(url, options, maxRetries = 5) {
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.ok) {
+                        return response;
+                    }
+                    if (response.status === 429) { // Rate limit error
+                        const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        // For other non-429 errors, throw
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                } catch (error) {
+                    if (attempt === maxRetries - 1) throw error;
+                    // Wait for next retry
+                    const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+            throw new Error('Max retries exceeded');
+        }
+
+
+        async function convertCurrency() {
+            const amount = document.getElementById('amount').value;
+            const fromCurrency = document.getElementById('from-currency').value;
+            const toCurrency = document.getElementById('to-currency').value;
+            const resultDiv = document.getElementById('conversion-result');
+            const loadingDiv = document.getElementById('conversion-loading');
+            const citationDiv = document.getElementById('conversion-citation');
+
+            resultDiv.textContent = 'Result (Nateeja)';
+            citationDiv.textContent = '';
+            loadingDiv.classList.remove('hidden');
+
+            if (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
+                resultDiv.textContent = 'Invalid amount (Galat Rakam)';
+                loadingDiv.classList.add('hidden');
+                return;
+            }
+            
+            // Construct the user query for the Gemini API
+            const userQuery = `Current exchange rate for ${parseFloat(amount).toFixed(2)} ${fromCurrency} to ${toCurrency}. Provide only the final converted value and the target currency symbol, without any extra text or explanation.`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                tools: [{ "google_search": {} }], // Enable Google Search for live data
+            };
+
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+            
+            try {
+                const response = await fetchWithExponentialBackoff(apiUrl, options);
+                const result = await response.json();
+                
+                const candidate = result.candidates?.[0];
+                
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const text = candidate.content.parts[0].text.trim();
+                    resultDiv.textContent = text; // Should contain the final formatted result (e.g., 12.34 USD)
+                    
+                    // Extract grounding sources (citations)
+                    let sources = [];
+                    const groundingMetadata = candidate.groundingMetadata;
+                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                        sources = groundingMetadata.groundingAttributions
+                            .map(attribution => ({
+                                uri: attribution.web?.uri,
+                                title: attribution.web?.title,
+                            }))
+                            .filter(source => source.uri && source.title);
+                    }
+                    
+                    if (sources.length > 0) {
+                        const sourceText = `Source: ${sources[0].title || sources[0].uri}`;
+                        citationDiv.textContent = sourceText;
+                    } else {
+                        citationDiv.textContent = 'Data provided by Google Search.';
+                    }
+
+                } else {
+                    resultDiv.textContent = 'Conversion failed (Conversion nahi ho paya).';
+                    citationDiv.textContent = 'Could not fetch live data.';
+                }
+                
+            } catch (error) {
+                console.error("API Call Error:", error);
+                resultDiv.textContent = 'API Error (API Mein Kharaabi)';
+                citationDiv.textContent = 'Please try again later.';
+            } finally {
+                loadingDiv.classList.add('hidden');
+            }
+        }
+
+        // Function to swap currencies (Good UX)
+        document.addEventListener('DOMContentLoaded', () => {
+            const swapBtn = document.getElementById('swap-btn');
+            if (swapBtn) {
+                swapBtn.addEventListener('click', () => {
+                    const fromSelect = document.getElementById('from-currency');
+                    const toSelect = document.getElementById('to-currency');
+                    if (fromSelect && toSelect) {
+                        const temp = fromSelect.value;
+                        toSelect.value = fromSelect.value;
+                        fromSelect.value = temp;
+                        // convertCurrency(); // Don't run conversion automatically, let the user click the button
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
             align-items: cent<!-- AD-FRIENDLY CONTENT SECTIONS -->
 <div class="mt-12 space-y-8 p-4 border-t border-gray-200">
     
