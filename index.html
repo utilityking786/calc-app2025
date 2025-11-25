@@ -96,7 +96,81 @@
             <button class="btn" onclick="appendToDisplay('.')">.</button>
             <button class="btn equal" onclick="calculateResult()">Enter</button>
         </div>
-        <!-- END CALCULATOR INTERFACE -->
+        <!-- END CALCULATOR INTERFACE --><!-- BMI CALCULATOR START -->
+<div class="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 mt-8 shadow-md border-2 border-green-100">
+    <h2 class="text-3xl font-bold text-center text-green-700 mb-6">BMI Calculator (बॉडी मास इंडेक्स)</h2>
+    <p class="text-center text-gray-500 mb-6">Apna wazan aur lambai daal kar BMI score aur health status check karein.</p>
+    
+    <div class="max-w-sm mx-auto space-y-4">
+        
+        <!-- Weight Input -->
+        <div>
+            <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Wazan (Kilograms mein):</label>
+            <input type="number" id="weight" placeholder="Udaaharan: 70" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="1" step="0.1">
+        </div>
+
+        <!-- Height Input -->
+        <div>
+            <label for="height" class="block text-sm font-medium text-gray-700 mb-1">Lambai (Meters mein):</label>
+            <input type="number" id="height" placeholder="Udaaharan: 1.75" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="0.1" step="0.01">
+        </div>
+        
+        <!-- Calculate Button -->
+        <button onclick="calculateBMI()" class="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition duration-200 shadow-md">
+            BMI Calculate Karein
+        </button>
+
+        <!-- Result Display -->
+        <div id="bmi-result" class="p-4 mt-4 text-center border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 min-h-[5rem] flex items-center justify-center">
+            <span class="text-md font-medium">Result yahan dikhega.</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateBMI() {
+        const weightInput = document.getElementById('weight').value;
+        const heightInput = document.getElementById('height').value;
+        const resultDiv = document.getElementById('bmi-result');
+
+        const weight = parseFloat(weightInput);
+        const height = parseFloat(heightInput);
+        
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            resultDiv.innerHTML = `<span class="text-red-600 font-bold">Kripya sahi wazan aur lambai daalein.</span>`;
+            return;
+        }
+
+        // Formula: BMI = weight / (height * height)
+        const bmi = weight / (height * height);
+        const bmiFormatted = bmi.toFixed(2);
+        let status = '';
+        let color = '';
+
+        if (bmi < 18.5) {
+            status = 'Underweight (Kam Wazan)';
+            color = 'text-blue-600';
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            status = 'Healthy Weight (Sahi Wazan)';
+            color = 'text-green-600';
+        } else if (bmi >= 25 && bmi < 29.9) {
+            status = 'Overweight (Zyada Wazan)';
+            color = 'text-yellow-600';
+        } else {
+            status = 'Obesity (Motaapa)';
+            color = 'text-red-600';
+        }
+
+        resultDiv.innerHTML = `
+            <div class="space-y-2">
+                <p class="text-2xl font-bold">BMI Score: <span class="${color}">${bmiFormatted}</span></p>
+                <p class="text-lg font-semibold">Status: <span class="${color}">${status}</span></p>
+                <p class="text-sm text-gray-500">Yeh sirf ek aam jaankari hai. Sahi salaah ke liye doctor se milein.</p>
+            </div>
+        `;
+    }
+</script>
+<!-- BMI CALCULATOR END -->
 
 
         <!-- CURRENCY CONVERTER INTERFACE -->
