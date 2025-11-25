@@ -180,7 +180,74 @@
         `;
     }
 </script>
-<!-- BMI CALCULATOR END -->
+<!-- BMI CALCULATOR END --><!-- TIP CALCULATOR START -->
+<div class="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 mt-8 shadow-md border-2 border-orange-100">
+    <h2 class="text-3xl font-bold text-center text-orange-700 mb-6">Tip Calculator (टिप और खर्च का हिसाब)</h2>
+    <p class="text-center text-gray-500 mb-6">Apne bill ka tip aur har vyakti ka hissa aasaani se nikaalein.</p>
+    
+    <div class="max-w-sm mx-auto space-y-4">
+        
+        <!-- Bill Amount Input -->
+        <div>
+            <label for="billAmount" class="block text-sm font-medium text-gray-700 mb-1">Total Bill Amount (कुल बिल):</label>
+            <input type="number" id="billAmount" placeholder="Udaaharan: 500" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" min="0" step="0.01">
+        </div>
+
+        <!-- Tip Percentage Input -->
+        <div>
+            <label for="tipPercent" class="block text-sm font-medium text-gray-700 mb-1">Tip Percentage (% mein):</label>
+            <input type="number" id="tipPercent" value="15" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" min="0" max="100" step="1">
+        </div>
+
+        <!-- Number of People Input -->
+        <div>
+            <label for="numPeople" class="block text-sm font-medium text-gray-700 mb-1">Kitne Log Hain (Kharch baantne ke liye):</label>
+            <input type="number" id="numPeople" value="1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" min="1" step="1">
+        </div>
+        
+        <!-- Calculate Button -->
+        <button onclick="calculateTip()" class="w-full bg-orange-500 text-white font-semibold py-3 rounded-lg hover:bg-orange-600 transition duration-200 shadow-md">
+            Tip aur Kharch Calculate Karein
+        </button>
+
+        <!-- Result Display -->
+        <div id="tip-result" class="p-4 mt-4 text-center border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 min-h-[7rem] flex items-center justify-center">
+            <span class="text-md font-medium">Result yahan dikhega.</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateTip() {
+        const billAmountInput = document.getElementById('billAmount').value;
+        const tipPercentInput = document.getElementById('tipPercent').value;
+        const numPeopleInput = document.getElementById('numPeople').value;
+        const resultDiv = document.getElementById('tip-result');
+
+        const billAmount = parseFloat(billAmountInput);
+        const tipPercent = parseFloat(tipPercentInput);
+        const numPeople = parseInt(numPeopleInput);
+        
+        if (isNaN(billAmount) || billAmount <= 0 || isNaN(tipPercent) || isNaN(numPeople) || numPeople <= 0) {
+            resultDiv.innerHTML = `<span class="text-red-600 font-bold">Kripya sabhi jaankari sahi daalein.</span>`;
+            return;
+        }
+
+        // Calculate Tip
+        const tipAmount = billAmount * (tipPercent / 100);
+        const totalBillWithTip = billAmount + tipAmount;
+        const perPersonCost = totalBillWithTip / numPeople;
+
+        resultDiv.innerHTML = `
+            <div class="space-y-2">
+                <p class="text-xl font-bold text-orange-600">Total Tip: ${tipAmount.toFixed(2)}</p>
+                <p class="text-xl font-bold">Total Bill (Tip ke saath): ${totalBillWithTip.toFixed(2)}</p>
+                ${numPeople > 1 ? `<p class="text-lg font-semibold text-green-700">Har Vykti Ka Kharch: ${perPersonCost.toFixed(2)}</p>` : ''}
+            </div>
+        `;
+    }
+</script>
+<!-- TIP CALCULATOR END -->
 
 
         <!-- CURRENCY CONVERTER INTERFACE -->
