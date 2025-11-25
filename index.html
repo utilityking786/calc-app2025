@@ -247,7 +247,132 @@
         `;
     }
 </script>
-<!-- TIP CALCULATOR END -->
+<!-- TIP CALCULATOR END --><!-- PASSWORD GENERATOR START -->
+<div class="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 mt-8 shadow-md border-2 border-indigo-100">
+    <h2 class="text-3xl font-bold text-center text-indigo-700 mb-6">Password Generator (सुरक्षित Password बनाने वाला)</h2>
+    <p class="text-center text-gray-500 mb-6">Apne online accounts ke liye ek bahut mazboot aur unique password banaayein.</p>
+    
+    <div class="max-w-sm mx-auto space-y-4">
+        
+        <!-- Password Length Input -->
+        <div>
+            <label for="passwordLength" class="block text-sm font-medium text-gray-700 mb-1">Password Ki Lambaai (Characters):</label>
+            <input type="number" id="passwordLength" value="12" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" min="8" max="128" step="1">
+        </div>
+
+        <!-- Options Checkboxes -->
+        <div class="space-y-2 pt-2">
+            <div class="flex items-center">
+                <input id="includeUppercase" type="checkbox" checked class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label for="includeUppercase" class="ml-3 block text-sm text-gray-700">Bade Akshar (A-Z)</label>
+            </div>
+            <div class="flex items-center">
+                <input id="includeNumbers" type="checkbox" checked class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label for="includeNumbers" class="ml-3 block text-sm text-gray-700">Sankhyayein (0-9)</label>
+            </div>
+            <div class="flex items-center">
+                <input id="includeSymbols" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                <label for="includeSymbols" class="ml-3 block text-sm text-gray-700">Nishaan (!@#$%)</label>
+            </div>
+        </div>
+        
+        <!-- Generate Button -->
+        <button onclick="generatePassword()" class="w-full bg-indigo-500 text-white font-semibold py-3 rounded-lg hover:bg-indigo-600 transition duration-200 shadow-md">
+            Password Generate Karein
+        </button>
+
+        <!-- Result Display -->
+        <div id="password-result" class="p-4 mt-4 text-center border-2 border-gray-200 rounded-lg bg-gray-50 flex flex-col items-center">
+            <span id="generatedPasswordText" class="text-xl font-mono text-gray-800 break-all min-h-[1.5rem] mb-2"></span>
+            <button id="copyButton" onclick="copyPassword()" class="text-sm text-indigo-500 hover:text-indigo-700 hidden" disabled>Copy</button>
+        </div>
+        <p id="passwordMessage" class="text-center text-red-500 text-sm min-h-[1rem]"></p>
+    </div>
+</div>
+
+<script>
+    function generatePassword() {
+        const length = parseInt(document.getElementById('passwordLength').value);
+        const includeUppercase = document.getElementById('includeUppercase').checked;
+        const includeNumbers = document.getElementById('includeNumbers').checked;
+        const includeSymbols = document.getElementById('includeSymbols').checked;
+        const resultText = document.getElementById('generatedPasswordText');
+        const copyButton = document.getElementById('copyButton');
+        const message = document.getElementById('passwordMessage');
+
+        message.textContent = '';
+
+        if (length < 8 || length > 128 || isNaN(length)) {
+            message.textContent = "Lambaai 8 aur 128 ke beech honi chahiye.";
+            resultText.textContent = '';
+            copyButton.classList.add('hidden');
+            copyButton.disabled = true;
+            return;
+        }
+
+        if (!includeUppercase && !includeNumbers && !includeSymbols) {
+             message.textContent = "Kripya kam se kam ek option (Bade Akshar, Sankhyayein, ya Nishaan) select karein.";
+            resultText.textContent = '';
+            copyButton.classList.add('hidden');
+            copyButton.disabled = true;
+            return;
+        }
+
+        const lower = 'abcdefghijklmnopqrstuvwxyz';
+        const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        const symbols = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+
+        let characterSet = lower;
+        if (includeUppercase) characterSet += upper;
+        if (includeNumbers) characterSet += numbers;
+        if (includeSymbols) characterSet += symbols;
+
+        let password = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characterSet.length);
+            password += characterSet[randomIndex];
+        }
+
+        resultText.textContent = password;
+        copyButton.classList.remove('hidden');
+        copyButton.disabled = false;
+    }
+
+    // Function to copy the generated password to clipboard
+    function copyPassword() {
+        const passwordText = document.getElementById('generatedPasswordText').textContent;
+        const message = document.getElementById('passwordMessage');
+        const tempInput = document.createElement('textarea');
+
+        if (!passwordText) {
+            message.textContent = "Pehle password generate karein.";
+            return;
+        }
+
+        // Use the execCommand method for clipboard functionality inside iframes
+        tempInput.value = passwordText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+            document.execCommand('copy');
+            message.textContent = "Password Copy Ho Gaya!";
+        } catch (err) {
+            message.textContent = "Copy nahi ho paya. Kripya khud se copy karein.";
+        }
+        document.body.removeChild(tempInput);
+    }
+
+    // Generate initial password on load
+    window.onload = function() {
+        // Ensure all components are loaded before calling init functions
+        if (typeof calculateTip === 'function') {
+            // Optional: call generatePassword() here if you want it to appear immediately
+            // generatePassword();
+        }
+    };
+</script>
+<!-- PASSWORD GENERATOR END -->
 
 
         <!-- CURRENCY CONVERTER INTERFACE -->
