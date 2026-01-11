@@ -3,1220 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utility Nexus: Online Calculator, Live Currency Converter & Digital Stopwatch Tool</title>
-    <meta name="description" content="Use our free all-in-one utility tool featuring a fast scientific calculator, real-time currency converter for INR, USD, EUR, and an accurate digital stopwatch. Simple, fast, and responsive.">
-    
-    <!-- ✅ 1. ADSENSE SCRIPT VERIFICATION (Primary Method) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3454777726397900"
-     crossorigin="anonymous"></script>
-
-    <!-- ✅ 2. ADSENSE META TAG VERIFICATION (Secondary/Backup Method) -->
-    <meta name="google-adsense-account" content="ca-pub-3454777726397900">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Calculator & Live Currency Converter - Ready for AdSense</title>
+    <title>ProTools - Free Online Multi-Utility Platform</title>
+    <!-- AdSense Code Paste Here -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID" crossorigin="anonymous"></script> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        .btn {
-            background-color: #ffffff;
-            border: 1px solid #d1d5db;
-            padding: 20px;
-            font-size: 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
-        .btn:hover { background-color: #e5e7eb; }
-        .operator { background-color: #fca5a5; color: white; }
-        .operator:hover { background-color: #ef4444; }
-        .equal { background-color: #10b981; color: white; grid-column: span 2; }
-        .equal:hover { background-color: #059669; }
-        .clear { background-color: #9ca3af; color: white; }
-        .clear:hover { background-color: #6b7280; }
-        .display {
-            grid-column: 1 / -1;
-            background-color: #1f2937;
-            color: #ffffff;
-            text-align: right;
-            padding: 20px;
-            font-size: 2.5rem;
-            border-radius: 12px 12px 0 0;
-            margin-bottom: 10px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        .nav-link.active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-6 md:p-10">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Online Multi-Purpose Calculator & Converter</h1>
-
-        <!-- CALCULATOR INTERFACE --><!-- AD SLOT PLACEHOLDER - Isi jagah par AdSense ka code aayega -->
-<div class="my-6 p-4 text-center border-dashed border-2 border-indigo-300 bg-indigo-50 rounded-lg">
-    <p class="text-indigo-700 font-semibold">ADVERTISEMENT SLOT HERE (AdSense Approval ke baad code paste karein)</p>
-    <p class="text-sm text-indigo-500">For maximum visibility on desktop and mobile.</p>
-</div>
-<!-- END AD SLOT PLACEHOLDER -->
-        <div class="calculator-grid max-w-sm mx-auto p-4 bg-gray-200 rounded-xl shadow-inner">
-            <div id="display" class="display">0</div>
-            <button class="btn clear" onclick="clearDisplay()">AC</button>
-            <button class="btn operator" onclick="appendToDisplay('/')">/</button>
-            <button class="btn operator" onclick="appendToDisplay('*')">*</button>
-            <button class="btn" onclick="appendToDisplay('7')">7</button>
-            <button class="btn" onclick="appendToDisplay('8')">8</button>
-            <button class="btn" onclick="appendToDisplay('9')">9</button>
-            <button class="btn operator" onclick="appendToDisplay('-')">-</button>
-            <button class="btn" onclick="appendToDisplay('4')">4</button>
-            <button class="btn" onclick="appendToDisplay('5')">5</button>
-            <button class="btn" onclick="appendToDisplay('6')">6</button>
-            <button class="btn operator" onclick="appendToDisplay('+')">+</button>
-            <button class="btn" onclick="appendToDisplay('1')">1</button>
-            <button class="btn" onclick="appendToDisplay('2')">2</button>
-            <button class="btn" onclick="appendToDisplay('3')">3</button>
-            <button class="btn operator" onclick="calculateResult()">=</button>
-            <button class="btn" onclick="appendToDisplay('0')">0</button>
-            <button class="btn" onclick="appendToDisplay('.')">.</button>
-            <button class="btn equal" onclick="calculateResult()">Enter</button>
-        </div>
-        <!-- END CALCULATOR INTERFACE --><!-- AD SLOT PLACEHOLDER - Isi jagah par AdSense ka code aayega -->
-<div class="my-6 p-4 text-center border-dashed border-2 border-indigo-300 bg-indigo-50 rounded-lg">
-    <p class="text-indigo-700 font-semibold">ADVERTISEMENT SLOT HERE (AdSense Approval ke baad code paste karein)</p>
-    <p class="text-sm text-indigo-500">For maximum visibility on desktop and mobile.</p>
-</div>
-<!-- END AD SLOT PLACEHOLDER --><!-- BMI CALCULATOR START -->
-<div class="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 mt-8 shadow-md border-2 border-green-100">
-    <h2 class="text-3xl font-bold text-center text-green-700 mb-6">BMI Calculator (बॉडी मास इंडेक्स)</h2>
-    <p class="text-center text-gray-500 mb-6">Apna wazan aur lambai daal kar BMI score aur health status check karein.</p>
-    
-    <div class="max-w-sm mx-auto space-y-4">
-        
-        <!-- Weight Input -->
-        <div>
-            <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Wazan (Kilograms mein):</label>
-            <input type="number" id="weight" placeholder="Udaaharan: 70" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="1" step="0.1">
-        </div>
-
-        <!-- Height Input -->
-        <div>
-            <label for="height" class="block text-sm font-medium text-gray-700 mb-1">Lambai (Meters mein):</label>
-            <input type="number" id="height" placeholder="Udaaharan: 1.75" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500" min="0.1" step="0.01">
-        </div>
-        
-        <!-- Calculate Button -->
-        <button onclick="calculateBMI()" class="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition duration-200 shadow-md">
-            BMI Calculate Karein
-        </button>
-
-        <!-- Result Display -->
-        <div id="bmi-result" class="p-4 mt-4 text-center border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 min-h-[5rem] flex items-center justify-center">
-            <span class="text-md font-medium">Result yahan dikhega.</span>
-        </div>
-    </div>
-</div>
-
-<script>
-    function calculateBMI() {
-        const weightInput = document.getElementById('weight').value;
-        const heightInput = document.getElementById('height').value;
-        const resultDiv = document.getElementById('bmi-result');
-
-        const weight = parseFloat(weightInput);
-        const height = parseFloat(heightInput);
-        
-        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-            resultDiv.innerHTML = `<span class="text-red-600 font-bold">Kripya sahi wazan aur lambai daalein.</span>`;
-            return;
-        }
-
-        // Formula: BMI = weight / (height * height)
-        const bmi = weight / (height * height);
-        const bmiFormatted = bmi.toFixed(2);
-        let status = '';
-        let color = '';
-
-        if (bmi < 18.5) {
-            status = 'Underweight (Kam Wazan)';
-            color = 'text-blue-600';
-        } else if (bmi >= 18.5 && bmi < 24.9) {
-            status = 'Healthy Weight (Sahi Wazan)';
-            color = 'text-green-600';
-        } else if (bmi >= 25 && bmi < 29.9) {
-            status = 'Overweight (Zyada Wazan)';
-            color = 'text-yellow-600';
-        } else {
-            status = 'Obesity (Motaapa)';
-            color = 'text-red-600';
-        }
-
-        resultDiv.innerHTML = `
-            <div class="space-y-2">
-                <p class="text-2xl font-bold">BMI Score: <span class="${color}">${bmiFormatted}</span></p>
-                <p class="text-lg font-semibold">Status: <span class="${color}">${status}</span></p>
-                <p class="text-sm text-gray-500">Yeh sirf ek aam jaankari hai. Sahi salaah ke liye doctor se milein.</p>
-            </div>
-        `;
-    }
-</script>
-<!-- BMI CALCULATOR END --><!-- TIP CALCULATOR START -->
-<div class="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 mt-8 shadow-md border-2 border-orange-100">
-    <h2 class="text-3xl font-bold text-center text-orange-700 mb-6">Tip Calculator (टिप और खर्च का हिसाब)</h2>
-    <p class="text-center text-gray-500 mb-6">Apne bill ka tip aur har vyakti ka hissa aasaani se nikaalein.</p>
-    
-    <div class="max-w-sm mx-auto space-y-4">
-        
-        <!-- Bill Amount Input -->
-        <div>
-            <label for="billAmount" class="block text-sm font-medium text-gray-700 mb-1">Total Bill Amount (कुल बिल):</label>
-            <input type="number" id="billAmount" placeholder="Udaaharan: 500" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" min="0" step="0.01">
-        </div>
-
-        <!-- Tip Percentage Input -->
-        <div>
-            <label for="tipPercent" class="block text-sm font-medium text-gray-700 mb-1">Tip Percentage (% mein):</label>
-            <input type="number" id="tipPercent" value="15" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" min="0" max="100" step="1">
-        </div>
-
-        <!-- Number of People Input -->
-        <div>
-            <label for="numPeople" class="block text-sm font-medium text-gray-700 mb-1">Kitne Log Hain (Kharch baantne ke liye):</label>
-            <input type="number" id="numPeople" value="1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" min="1" step="1">
-        </div>
-        
-        <!-- Calculate Button -->
-        <button onclick="calculateTip()" class="w-full bg-orange-500 text-white font-semibold py-3 rounded-lg hover:bg-orange-600 transition duration-200 shadow-md">
-            Tip aur Kharch Calculate Karein
-        </button>
-
-        <!-- Result Display -->
-        <div id="tip-result" class="p-4 mt-4 text-center border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 min-h-[7rem] flex items-center justify-center">
-            <span class="text-md font-medium">Result yahan dikhega.</span>
-        </div>
-    </div>
-</div>
-
-<script>
-    function calculateTip() {
-        const billAmountInput = document.getElementById('billAmount').value;
-        const tipPercentInput = document.getElementById('tipPercent').value;
-        const numPeopleInput = document.getElementById('numPeople').value;
-        const resultDiv = document.getElementById('tip-result');
-
-        const billAmount = parseFloat(billAmountInput);
-        const tipPercent = parseFloat(tipPercentInput);
-        const numPeople = parseInt(numPeopleInput);
-        
-        if (isNaN(billAmount) || billAmount <= 0 || isNaN(tipPercent) || isNaN(numPeople) || numPeople <= 0) {
-            resultDiv.innerHTML = `<span class="text-red-600 font-bold">Kripya sabhi jaankari sahi daalein.</span>`;
-            return;
-        }
-
-        // Calculate Tip
-        const tipAmount = billAmount * (tipPercent / 100);
-        const totalBillWithTip = billAmount + tipAmount;
-        const perPersonCost = totalBillWithTip / numPeople;
-
-        resultDiv.innerHTML = `
-            <div class="space-y-2">
-                <p class="text-xl font-bold text-orange-600">Total Tip: ${tipAmount.toFixed(2)}</p>
-                <p class="text-xl font-bold">Total Bill (Tip ke saath): ${totalBillWithTip.toFixed(2)}</p>
-                ${numPeople > 1 ? `<p class="text-lg font-semibold text-green-700">Har Vykti Ka Kharch: ${perPersonCost.toFixed(2)}</p>` : ''}
-            </div>
-        `;
-    }
-</script>
-<!-- TIP CALCULATOR END --><!-- PASSWORD GENERATOR START -->
-<div class="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 mt-8 shadow-md border-2 border-indigo-100">
-    <h2 class="text-3xl font-bold text-center text-indigo-700 mb-6">Password Generator (सुरक्षित Password बनाने वाला)</h2>
-    <p class="text-center text-gray-500 mb-6">Apne online accounts ke liye ek bahut mazboot aur unique password banaayein.</p>
-    
-    <div class="max-w-sm mx-auto space-y-4">
-        
-        <!-- Password Length Input -->
-        <div>
-            <label for="passwordLength" class="block text-sm font-medium text-gray-700 mb-1">Password Ki Lambaai (Characters):</label>
-            <input type="number" id="passwordLength" value="12" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" min="8" max="128" step="1">
-        </div>
-
-        <!-- Options Checkboxes -->
-        <div class="space-y-2 pt-2">
-            <div class="flex items-center">
-                <input id="includeUppercase" type="checkbox" checked class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                <label for="includeUppercase" class="ml-3 block text-sm text-gray-700">Bade Akshar (A-Z)</label>
-            </div>
-            <div class="flex items-center">
-                <input id="includeNumbers" type="checkbox" checked class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                <label for="includeNumbers" class="ml-3 block text-sm text-gray-700">Sankhyayein (0-9)</label>
-            </div>
-            <div class="flex items-center">
-                <input id="includeSymbols" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                <label for="includeSymbols" class="ml-3 block text-sm text-gray-700">Nishaan (!@#$%)</label>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-blue-600 cursor-pointer" onclick="showSection('home')">ProTools</div>
+                <div class="hidden md:flex space-x-6 font-medium">
+                    <button onclick="showSection('home')" class="nav-link hover:text-blue-500">Home</button>
+                    <button onclick="showSection('tools')" class="nav-link hover:text-blue-500">All Tools</button>
+                    <button onclick="showSection('about')" class="nav-link hover:text-blue-500">About Us</button>
+                    <button onclick="showSection('contact')" class="nav-link hover:text-blue-500">Contact</button>
+                </div>
+                <!-- Mobile Menu Toggle (Simplified) -->
+                <div class="md:hidden">
+                    <button onclick="showSection('tools')" class="bg-blue-600 text-white px-3 py-1 rounded">Menu</button>
+                </div>
             </div>
         </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
         
-        <!-- Generate Button -->
-        <button onclick="generatePassword()" class="w-full bg-indigo-500 text-white font-semibold py-3 rounded-lg hover:bg-indigo-600 transition duration-200 shadow-md">
-            Password Generate Karein
-        </button>
-
-        <!-- Result Display -->
-        <div id="password-result" class="p-4 mt-4 text-center border-2 border-gray-200 rounded-lg bg-gray-50 flex flex-col items-center">
-            <span id="generatedPasswordText" class="text-xl font-mono text-gray-800 break-all min-h-[1.5rem] mb-2"></span>
-            <button id="copyButton" onclick="copyPassword()" class="text-sm text-indigo-500 hover:text-indigo-700 hidden" disabled>Copy</button>
-        </div>
-        <p id="passwordMessage" class="text-center text-red-500 text-sm min-h-[1rem]"></p>
-    </div>
-</div>
-
-<script>
-    function generatePassword() {
-        const length = parseInt(document.getElementById('passwordLength').value);
-        const includeUppercase = document.getElementById('includeUppercase').checked;
-        const includeNumbers = document.getElementById('includeNumbers').checked;
-        const includeSymbols = document.getElementById('includeSymbols').checked;
-        const resultText = document.getElementById('generatedPasswordText');
-        const copyButton = document.getElementById('copyButton');
-        const message = document.getElementById('passwordMessage');
-
-        message.textContent = '';
-
-        if (length < 8 || length > 128 || isNaN(length)) {
-            message.textContent = "Lambaai 8 aur 128 ke beech honi chahiye.";
-            resultText.textContent = '';
-            copyButton.classList.add('hidden');
-            copyButton.disabled = true;
-            return;
-        }
-
-        if (!includeUppercase && !includeNumbers && !includeSymbols) {
-             message.textContent = "Kripya kam se kam ek option (Bade Akshar, Sankhyayein, ya Nishaan) select karein.";
-            resultText.textContent = '';
-            copyButton.classList.add('hidden');
-            copyButton.disabled = true;
-            return;
-        }
-
-        const lower = 'abcdefghijklmnopqrstuvwxyz';
-        const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const numbers = '0123456789';
-        const symbols = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
-
-        let characterSet = lower;
-        if (includeUppercase) characterSet += upper;
-        if (includeNumbers) characterSet += numbers;
-        if (includeSymbols) characterSet += symbols;
-
-        let password = '';
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characterSet.length);
-            password += characterSet[randomIndex];
-        }
-
-        resultText.textContent = password;
-        copyButton.classList.remove('hidden');
-        copyButton.disabled = false;
-    }
-
-    // Function to copy the generated password to clipboard
-    function copyPassword() {
-        const passwordText = document.getElementById('generatedPasswordText').textContent;
-        const message = document.getElementById('passwordMessage');
-        const tempInput = document.createElement('textarea');
-
-        if (!passwordText) {
-            message.textContent = "Pehle password generate karein.";
-            return;
-        }
-
-        // Use the execCommand method for clipboard functionality inside iframes
-        tempInput.value = passwordText;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        try {
-            document.execCommand('copy');
-            message.textContent = "Password Copy Ho Gaya!";
-        } catch (err) {
-            message.textContent = "Copy nahi ho paya. Kripya khud se copy karein.";
-        }
-        document.body.removeChild(tempInput);
-    }
-
-    // Generate initial password on load
-    window.onload = function() {
-        // Ensure all components are loaded before calling init functions
-        if (typeof calculateTip === 'function') {
-            // Optional: call generatePassword() here if you want it to appear immediately
-            // generatePassword();
-        }
-    };
-</script>
-<!-- PASSWORD GENERATOR END -->
-
-
-        <!-- CURRENCY CONVERTER INTERFACE -->
-        <div class="mt-12 p-6 bg-blue-50 rounded-xl shadow-lg border border-blue-200">
-            <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">Live Currency Converter (Mudrantaar)</h2>
-            
-            <div class="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0 items-center justify-center">
-                <!-- Amount Input -->
-                <input type="number" id="amount" placeholder="Amount (Rakam)" class="w-full md:w-1/3 p-3 border border-gray-300 rounded-lg text-lg focus:ring-blue-500 focus:border-blue-100000" value="1">
-                <select id="from-currency" class="w-full md:w-1/4 p-3 border border-gray-300 rounded-lg text-lg bg-white">
-                    <option value="INR" selected>INR - Indian Rupee</optioN>
-                    <option value="USD">USD - US Dollar</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="GBP">GBP - British Pound</option>
-                    <option value="JPY">JPY - Japanese Yen</option>
-                    <option value="CAD">CAD - Canadian Dollar</option>
-                </select>
-
-                <!-- Swap Button (Optional, but good UX) -->
-                <button id="swap-btn" type="button" class="p-3 text-blue-600 hover:text-blue-800 transition duration-150">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 10H4m0 0l4 4m-4-4l4-4" />
-                    </svg>
-                </button>
-                <select id="to-currency" class="w-full md:w-1/4 p-3 border border-gray-300 rounded-lg text-lg bg-white">
-                    <option value="USD" selected>USD - US Dollar</option>
-                    <option value="INR">INR - Indian Rupee</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="GBP">GBP - British Pound</option>
-                    <option value="JPY">JPY - Japanese Yen</option>
-                    <option value="CAD">CAD - Canadian Dollar</option>
-                </select>
+        <!-- HOME SECTION -->
+        <section id="home" class="section-content active text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">Professional Utility Tools for Everyone</h1>
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">We provide high-quality, free online tools to help you with daily calculations, unit conversions, and productivity tasks. Fast, secure, and easy to use.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div onclick="showSection('tools')" class="p-6 bg-white rounded-xl shadow hover:shadow-lg cursor-pointer transition">
+                    <div class="text-blue-500 text-3xl mb-3">🧮</div>
+                    <h3 class="font-bold text-xl mb-2">Calculator</h3>
+                    <p class="text-gray-500">Advanced mathematical operations in one click.</p>
+                </div>
+                <div onclick="showSection('tools')" class="p-6 bg-white rounded-xl shadow hover:shadow-lg cursor-pointer transition">
+                    <div class="text-blue-500 text-3xl mb-3">⚖️</div>
+                    <h3 class="font-bold text-xl mb-2">BMI Tracker</h3>
+                    <p class="text-gray-500">Monitor your health metrics accurately.</p>
+                </div>
+                <div onclick="showSection('tools')" class="p-6 bg-white rounded-xl shadow hover:shadow-lg cursor-pointer transition">
+                    <div class="text-blue-500 text-3xl mb-3">📄</div>
+                    <h3 class="font-bold text-xl mb-2">Unit Converter</h3>
+                    <p class="text-gray-500">Instant conversions for weight, length, and more.</p>
+                </div>
             </div>
-            
-            <button onclick="convertCurrency()" class="w-full mt-6 p-4 bg-blue-600 text-white font-bold text-xl rounded-lg hover:bg-blue-700 transition duration-150 shadow-md">
-                Convert (Badlein)
-            </button>
 
-            <div id="conversion-result" class="mt-6 p-4 bg-white rounded-lg border border-blue-300 text-center text-2xl font-extrabold text-gray-800 min-h-[60px] flex items-center justify-center">
-                Result (Nateeja)
+            <!-- SEO RICH TEXT AREA -->
+            <article class="prose max-w-none text-left bg-white p-8 rounded-xl shadow-sm border border-gray-100 mt-10">
+                <h2 class="text-2xl font-bold mb-4">Why Choose ProTools for Daily Tasks?</h2>
+                <p>In today's fast-paced digital world, efficiency is key. Whether you are a student solving complex math problems or a professional needing quick unit conversions, having reliable tools at your fingertips is essential. ProTools offers a comprehensive suite of utilities designed to simplify your life.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-2">Accurate Financial and Mathematical Calculations</h3>
+                <p>Our online calculator is not just a basic tool. It handles advanced expressions, helping users avoid manual errors. Accuracy is our top priority, ensuring that every result you get is mathematically sound.</p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Health Tracking with BMI Calculator</h3>
+                <p>Understanding your Body Mass Index (BMI) is the first step toward a healthier lifestyle. Our BMI calculator uses the latest medical formulas to give you an instant insight into your body composition. We provide context to your results, helping you understand where you stand in terms of health categories.</p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Universal Unit Conversion</h3>
+                <p>From converting meters to feet or kilograms to pounds, our conversion tool is designed for global use. It supports multiple metrics, making it perfect for international travelers, engineers, and students alike.</p>
+            </article>
+        </section>
+
+        <!-- TOOLS SECTION -->
+        <section id="tools" class="section-content">
+            <h2 class="text-3xl font-bold mb-8">All Utility Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Simple Calculator Tool -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><span class="mr-2">🧮</span> Calculator</h3>
+                    <input id="calc-display" type="text" class="w-full mb-4 p-4 text-2xl bg-gray-100 rounded text-right border-none" readonly value="0">
+                    <div class="grid grid-cols-4 gap-2">
+                        <button onclick="clearCalc()" class="bg-red-100 p-3 rounded font-bold">C</button>
+                        <button onclick="appendCalc('/')" class="bg-blue-100 p-3 rounded">/</button>
+                        <button onclick="appendCalc('*')" class="bg-blue-100 p-3 rounded">×</button>
+                        <button onclick="deleteCalc()" class="bg-gray-200 p-3 rounded">←</button>
+                        <!-- Numbers -->
+                        <button onclick="appendCalc('7')" class="bg-white border p-3 rounded">7</button>
+                        <button onclick="appendCalc('8')" class="bg-white border p-3 rounded">8</button>
+                        <button onclick="appendCalc('9')" class="bg-white border p-3 rounded">9</button>
+                        <button onclick="appendCalc('-')" class="bg-blue-100 p-3 rounded">-</button>
+                        <button onclick="appendCalc('4')" class="bg-white border p-3 rounded">4</button>
+                        <button onclick="appendCalc('5')" class="bg-white border p-3 rounded">5</button>
+                        <button onclick="appendCalc('6')" class="bg-white border p-3 rounded">6</button>
+                        <button onclick="appendCalc('+')" class="bg-blue-100 p-3 rounded">+</button>
+                        <button onclick="appendCalc('1')" class="bg-white border p-3 rounded">1</button>
+                        <button onclick="appendCalc('2')" class="bg-white border p-3 rounded">2</button>
+                        <button onclick="appendCalc('3')" class="bg-white border p-3 rounded">3</button>
+                        <button onclick="calculate()" class="bg-blue-600 text-white p-3 rounded row-span-2">=</button>
+                        <button onclick="appendCalc('0')" class="bg-white border p-3 rounded col-span-2">0</button>
+                        <button onclick="appendCalc('.')" class="bg-white border p-3 rounded">.</button>
+                    </div>
+                </div>
+
+                <!-- BMI Calculator Tool -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><span class="mr-2">⚖️</span> BMI Calculator</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Height (cm)</label>
+                            <input id="bmi-height" type="number" class="w-full p-2 border rounded" placeholder="e.g. 175">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Weight (kg)</label>
+                            <input id="bmi-weight" type="number" class="w-full p-2 border rounded" placeholder="e.g. 70">
+                        </div>
+                        <button onclick="calculateBMI()" class="w-full bg-blue-600 text-white py-2 rounded font-bold">Calculate BMI</button>
+                        <div id="bmi-result" class="p-4 bg-blue-50 rounded hidden text-center">
+                            <div class="text-2xl font-bold text-blue-800" id="bmi-val"></div>
+                            <div class="text-sm text-blue-600" id="bmi-status"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="conversion-loading" class="text-center text-sm text-blue-500 mt-2 hidden">
-                Fetching live rates... (Live rates laa rahe hain...)
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section id="about" class="section-content">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                <h2 class="text-3xl font-bold mb-6">About ProTools</h2>
+                <p class="mb-4">Welcome to <strong>ProTools</strong>, your number one source for all things utility. We're dedicated to giving you the very best of web-based tools, with a focus on speed, reliability, and user experience.</p>
+                <p class="mb-4">Founded in 2024, ProTools has come a long way from its beginnings. When we first started out, our passion for "Utility for Everyone" drove us to build this platform so that users don't have to download heavy software for simple calculations.</p>
+                <p class="mb-4">We serve users all over the world and are thrilled that we're able to turn our passion into our own website. We hope you enjoy our products as much as we enjoy offering them to you.</p>
+                <h3 class="text-xl font-bold mt-8 mb-4">Our Mission</h3>
+                <p>Our mission is to provide high-quality digital tools that are accessible to everyone, regardless of their technical background or location. We believe in the power of simplicity.</p>
             </div>
-            <div id="conversion-citation" class="text-center text-xs text-gray-500 mt-2"></div>
-        </div>
-        <!-- END CURRENCY CONVERTER INTERFACE -->
-        
-        
-        <!-- AD-FRIENDLY CONTENT SECTIONS -->
-        <div class="mt-12 space-y-8 p-4 border-t border-gray-200">
-            
-            <section>
-                <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">What is a Modern Web Calculator?</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    A calculator is an essential digital tool designed to perform mathematical operations, ranging from simple arithmetic (addition, subtraction, multiplication, division) to more complex scientific functions. This modern web-based calculator provides instant and accurate results for everyday calculations. Unlike physical calculators, our online tool is accessible on any device, ensuring you can quickly solve problems whether you are at home, in the office, or studying.
-                </p>
-            </section>
+        </section>
 
-            <section>
-                <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">How to Use This Calculator (Instructions)</h2>
-                <ol class="list-decimal list-inside space-y-2 text-gray-600">
-                    <li>**Enter Numbers:** Click the number buttons (0-9) to input your values into the display screen.</li>
-                    <li>**Select Operation:** Click an operator button (e.g., '+', '-', '*', or '/') to choose the mathematical function you need.</li>
-                    <li>**Continue Input:** Enter the second number for your calculation.</li>
-                    <li>**Get Result:** Click the **'='** or **'Enter'** button to see the final solution on the display.</li>
-                    <li>**Clear Screen:** Use the **'AC'** (All Clear) button to erase the current calculation and start a new one.</li>
-                </ol>
-                <p class="mt-4 text-sm text-gray-500">
-                    This calculator supports floating point numbers (decimals) and standard order of operations.
-                </p>
-            </section>
-        </div>
-        <!-- END CONTENT SECTIONS -->
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section-content text-center py-10">
+            <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+            <p class="text-gray-600 mb-8">Have a suggestion or found a bug? We'd love to hear from you.</p>
+            <div class="max-w-md mx-auto bg-white p-6 rounded-xl shadow-sm">
+                <p class="text-lg mb-2 font-semibold">Email us at:</p>
+                <a href="mailto:support@protools.com" class="text-blue-600 text-xl font-bold hover:underline">support@protools.com</a>
+                <p class="mt-6 text-sm text-gray-400">Response time: Within 24-48 hours</p>
+            </div>
+        </section>
 
-    </div>
+        <!-- TERMS & PRIVACY SECTION -->
+        <section id="privacy" class="section-content">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                <h2 class="text-2xl font-bold mb-4">Privacy Policy</h2>
+                <p class="text-sm text-gray-600 mb-4">Last Updated: October 2024</p>
+                <p class="mb-4">At ProTools, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by ProTools and how we use it.</p>
+                <h3 class="font-bold mt-4">Log Files</h3>
+                <p class="mb-4 text-gray-700">ProTools follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics.</p>
+                <h3 class="font-bold mt-4">Cookies and Web Beacons</h3>
+                <p class="mb-4 text-gray-700">Like any other website, ProTools uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited.</p>
+                
+                <hr class="my-8">
+                
+                <h2 class="text-2xl font-bold mb-4">Terms & Conditions</h2>
+                <p class="mb-4 text-gray-700">By accessing this website we assume you accept these terms and conditions. Do not continue to use ProTools if you do not agree to take all of the terms and conditions stated on this page.</p>
+                <p class="mb-4 text-gray-700">The following terminology applies to these Terms and Conditions: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12 mt-12">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">ProTools</h4>
+                <p class="text-sm">Simplifying your digital life with free, fast, and reliable online tools.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+                <ul class="text-sm space-y-2">
+                    <li><button onclick="showSection('home')" class="hover:text-white">Home</button></li>
+                    <li><button onclick="showSection('tools')" class="hover:text-white">All Tools</button></li>
+                    <li><button onclick="showSection('about')" class="hover:text-white">About Us</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Legal</h4>
+                <ul class="text-sm space-y-2">
+                    <li><button onclick="showSection('privacy')" class="hover:text-white">Privacy Policy</button></li>
+                    <li><button onclick="showSection('privacy')" class="hover:text-white">Terms of Service</button></li>
+                    <li><button onclick="showSection('contact')" class="hover:text-white">Contact Us</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-10 pt-8 border-t border-gray-700 text-xs">
+            &copy; 2024 ProTools Platform. All rights reserved.
+        </div>
+    </footer>
 
     <script>
-        // --- CALCULATOR LOGIC ---
-        let currentInput = '';
-        let displayElement = document.getElementById('display');
-
-        function updateDisplay(value) {
-            displayElement.textContent = value;
+        // Navigation Logic
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo(0, 0);
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            // This is simplified, in a real app you'd match the text
         }
 
-        function clearDisplay() {
-            currentInput = '';
-            updateDisplay('0');
+        // Calculator Logic
+        const display = document.getElementById('calc-display');
+        function appendCalc(val) {
+            if (display.value === '0') display.value = val;
+            else display.value += val;
         }
-
-        function appendToDisplay(value) {
-            if (displayElement.textContent === 'Error' || displayElement.textContent === '0') {
-                if (value === '.') {
-                    currentInput = '0.';
-                } else if (value !== '+' && value !== '-' && value !== '*' && value !== '/') {
-                    currentInput = value;
-                }
-            } else {
-                currentInput += value;
-            }
-            updateDisplay(currentInput);
+        function clearCalc() { display.value = '0'; }
+        function deleteCalc() {
+            display.value = display.value.slice(0, -1);
+            if (display.value === '') display.value = '0';
         }
-
-        function calculateResult() {
+        function calculate() {
             try {
-                // Use a safer eval method for calculations
-                const result = new Function('return ' + currentInput)();
-                currentInput = String(result);
-                updateDisplay(currentInput);
-            } catch (error) {
-                updateDisplay('Error');
-                console.error("Calculation Error:", error);
-            }
-        }
-        
-        // Initialize calculator display
-        clearDisplay();
-        
-        // --- CURRENCY CONVERTER LOGIC (Using Gemini API for Live Rates) ---
-
-        // Gemini API configuration
-        const apiKey = ""; // API key is handled by the platform
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-        // Function with Exponential Backoff for robust API calls
-        async function fetchWithExponentialBackoff(url, options, maxRetries = 5) {
-            for (let attempt = 0; attempt < maxRetries; attempt++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (response.ok) {
-                        return response;
-                    }
-                    if (response.status === 429) { // Rate limit error
-                        const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                    } else {
-                        // For other non-429 errors, throw
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                } catch (error) {
-                    if (attempt === maxRetries - 1) throw error;
-                    // Wait for next retry
-                    const delay = Math.pow(2, attempt) * 1000 + Math.random() * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                }
-            }
-            throw new Error('Max retries exceeded');
-        }
-
-
-        async function convertCurrency() {
-            const amount = document.getElementById('amount').value;
-            const fromCurrency = document.getElementById('from-currency').value;
-            const toCurrency = document.getElementById('to-currency').value;
-            const resultDiv = document.getElementById('conversion-result');
-            const loadingDiv = document.getElementById('conversion-loading');
-            const citationDiv = document.getElementById('conversion-citation');
-
-            resultDiv.textContent = 'Result (Nateeja)';
-            citationDiv.textContent = '';
-            loadingDiv.classList.remove('hidden');
-
-            if (isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
-                resultDiv.textContent = 'Invalid amount (Galat Rakam)';
-                loadingDiv.classList.add('hidden');
-                return;
-            }
-            
-            // Construct the user query for the Gemini API
-            const userQuery = `Current exchange rate for ${parseFloat(amount).toFixed(2)} ${fromCurrency} to ${toCurrency}. Provide only the final converted value and the target currency symbol, without any extra text or explanation.`;
-            
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                tools: [{ "google_search": {} }], // Enable Google Search for live data
-            };
-
-            const options = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            };
-            
-            try {
-                const response = await fetchWithExponentialBackoff(apiUrl, options);
-                const result = await response.json();
-                
-                const candidate = result.candidates?.[0];
-                
-                if (candidate && candidate.content?.parts?.[0]?.text) {
-                    const text = candidate.content.parts[0].text.trim();
-                    resultDiv.textContent = text; // Should contain the final formatted result (e.g., 12.34 USD)
-                    
-                    // Extract grounding sources (citations)
-                    let sources = [];
-                    const groundingMetadata = candidate.groundingMetadata;
-                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                        sources = groundingMetadata.groundingAttributions
-                            .map(attribution => ({
-                                uri: attribution.web?.uri,
-                                title: attribution.web?.title,
-                            }))
-                            .filter(source => source.uri && source.title);
-                    }
-                    
-                    if (sources.length > 0) {
-                        const sourceText = `Source: ${sources[0].title || sources[0].uri}`;
-                        citationDiv.textContent = sourceText;
-                    } else {
-                        citationDiv.textContent = 'Data provided by Google Search.';
-                    }
-
-                } else {
-                    resultDiv.textContent = 'Conversion failed (Conversion nahi ho paya).';
-                    citationDiv.textContent = 'Could not fetch live data.';
-                }
-                
-            } catch (error) {
-                console.error("API Call Error:", error);
-                resultDiv.textContent = 'API Error (API Mein Kharaabi)';
-                citationDiv.textContent = 'Please try again later.';
-            } finally {
-                loadingDiv.classList.add('hidden');
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = "Error";
+                setTimeout(clearCalc, 1000);
             }
         }
 
-        // Function to swap currencies (Good UX)
-        document.addEventListener('DOMContentLoaded', () => {
-            const swapBtn = document.getElementById('swap-btn');
-            if (swapBtn) {
-                swapBtn.addEventListener('click', () => {
-                    const fromSelect = document.getElementById('from-currency');
-                    const toSelect = document.getElementById('to-currency');
-                    if (fromSelect && toSelect) {
-                        const temp = fromSelect.value;
-                        toSelect.value = fromSelect.value;
-                        fromSelect.value = temp;
-                        // convertCurrency(); // Don't run conversion automatically, let the user click the button
-                    }
-                });
+        // BMI Logic
+        function calculateBMI() {
+            const h = document.getElementById('bmi-height').value / 100;
+            const w = document.getElementById('bmi-weight').value;
+            if (h > 0 && w > 0) {
+                const bmi = (w / (h * h)).toFixed(1);
+                const resDiv = document.getElementById('bmi-result');
+                const valDiv = document.getElementById('bmi-val');
+                const statusDiv = document.getElementById('bmi-status');
+                
+                resDiv.classList.remove('hidden');
+                valDiv.innerText = bmi;
+                
+                if (bmi < 18.5) statusDiv.innerText = "Underweight";
+                else if (bmi < 25) statusDiv.innerText = "Normal weight";
+                else if (bmi < 30) statusDiv.innerText = "Overweight";
+                else statusDiv.innerText = "Obese";
             }
-        });
+        }
     </script>
 </body>
 </html>
-            align-items: cent<!-- AD-FRIENDLY CONTENT SECTIONS -->
-<div class="mt-12 space-y-8 p-4 border-t border-gray-200">
-    
-    <section>
-        <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">What is a Modern Web Calculator?</h2>
-        <p class="text-gray-600 leading-relaxed">
-            A calculator is an essential digital tool designed to perform mathematical operations, ranging from simple arithmetic (addition, subtraction, multiplication, division) to more complex scientific functions. This modern web-based calculator provides instant and accurate results for everyday calculations. Unlike physical calculators, our online tool is accessible on any device, ensuring you can quickly solve problems whether you are at home, in the office, or studying.
-        </p>
-    </section>
-
-    <section>
-        <h2 class="text-2xl font-bold text-gray-700 border-b pb-2 mb-4">How to Use This Calculator (Instructions)</h2>
-        <ol class="list-decimal list-inside space-y-2 text-gray-600">
-            <li>**Enter Numbers:** Click the number buttons (0-9) to input your values into the display screen.</li>
-            <li>**Select Operation:** Click an operator button (e.g., '+', '-', '*', or '/') to choose the mathematical function you need.</li>
-            <li>**Continue Input:** Enter the second number for your calculation.</li>
-            <li>**Get Result:** Click the **'='** or **'Enter'** button to see the final solution on the display.</li>
-            <li>**Clear Screen:** Use the **'AC'** (All Clear) button to erase the current calculation and start a new one.</li>
-        </ol>
-        <p class="mt-4 text-sm text-gray-500">
-            This calculator supports floating point numbers (decimals) and standard order of operations.
-        </p>
-    </section>
-</div>
-<!-- END CONTENT SECTIONS -->er;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            gap: 24px;
-            grid-template-columns: 1fr;
-        }
-        @media (min-width: 768px) {
-            .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 1024px) {
-            .container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        .card {
-            background-color: white;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-        .calc-btn, .stopwatch-btn {
-            padding: 20px 0;
-            border-radius: 12px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            user-select: none;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .calc-btn {
-            background-color: #e5e7eb;
-            color: #1f2937;
-        }
-        .calc-btn:hover {
-            background-color: #d1d5db;
-        }
-        .calc-btn:active {
-            transform: scale(0.98);
-        }
-        .op-btn {
-            background-color: #3b82f6;
-            color: white;
-        }
-        .op-btn:hover {
-            background-color: #2563eb;
-        }
-        .eq-btn {
-            background-color: #10b981;
-            color: white;
-            grid-column: span 2;
-        }
-        .eq-btn:hover {
-            background-color: #059669;
-        }
-        .clear-btn {
-            background-color: #ef4444;
-            color: white;
-            grid-column: span 2;
-        }
-        .clear-btn:hover {
-            background-color: #dc2626;
-        }
-        .stopwatch-btn {
-            font-size: 1.125rem;
-            padding: 12px 10px;
-        }
-        .reset-btn {
-            background-color: #fca5a5;
-            color: #7f1d1d;
-        }
-        .reset-btn:hover {
-            background-color: #f87171;
-        }
-        
-        /* Ad Slot Styling (Ads will replace this content) */
-        .ad-slot {
-            min-height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border: 2px dashed #93c5fd;
-            background-color: #e0f2fe;
-            color: #1e40af;
-            font-weight: 600;
-            margin: 20px 0;
-            border-radius: 8px;
-            padding: 10px;
-            width: 100%;
-        }
-
-    </style>
-</head>
-<body>
-
-<main class="max-w-4xl w-full text-center mb-8">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">Utility Nexus: Aapka All-in-One Tool Kit</h1>
-    <p class="text-lg text-gray-600 mb-6">Quick and Reliable Tools for all your needs: Calculator, Currency Converter, and Stopwatch.</p>
-</main>
-
-<!-- === AD SENSE SLOT 1: Above Main Content === -->
-<div class="max-w-4xl w-full">
-    <div class="ad-slot" id="ad-slot-1">
-        <!-- ✅ AD UNIT 1 (Banner Ad) -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-3454777726397900"
-            data-ad-slot="1234567890" 
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <!-- Replace data-ad-slot with your actual ad slot ID from AdSense -->
-    </div>
-</div>
-<!-- =========================================== -->
-
-
-<div class="container">
-    
-    <!-- Calculator Card -->
-    <div class="card">
-        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Calculator</h3>
-        
-        <!-- Display Screen -->
-        <div class="bg-gray-800 text-white rounded-xl p-4 mb-6 h-24 flex flex-col justify-end items-end shadow-inner">
-            <div id="previous-operand" class="text-gray-400 text-xl overflow-hidden whitespace-nowrap"></div>
-            <div id="current-operand" class="text-4xl font-light overflow-hidden whitespace-nowrap">0</div>
-        </div>
-
-        <!-- Calculator Buttons -->
-        <div class="calculator-grid">
-            <div class="calc-btn clear-btn" data-action="clear">AC</div>
-            <div class="calc-btn op-btn" data-action="delete">DEL</div>
-            <div class="calc-btn op-btn" data-action="operator" data-value="/">÷</div>
-
-            <div class="calc-btn" data-action="number" data-value="7">7</div>
-            <div class="calc-btn" data-action="number" data-value="8">8</div>
-            <div class="calc-btn" data-action="number" data-value="9">9</div>
-            <div class="calc-btn op-btn" data-action="operator" data-value="*">×</div>
-
-            <div class="calc-btn" data-action="number" data-value="4">4</div>
-            <div class="calc-btn" data-action="number" data-value="5">5</div>
-            <div class="calc-btn" data-action="number" data-value="6">6</div>
-            <div class="calc-btn op-btn" data-action="operator" data-value="-">-</div>
-
-            <div class="calc-btn" data-action="number" data-value="1">1</div>
-            <div class="calc-btn" data-action="number" data-value="2">2</div>
-            <div class="calc-btn" data-action="number" data-value="3">3</div>
-            <div class="calc-btn op-btn" data-action="operator" data-value="+">+</div>
-
-            <div class="calc-btn" data-action="number" data-value="0">0</div>
-            <div class="calc-btn" data-action="decimal" data-value=".">.</div>
-            <div class="calc-btn eq-btn" data-action="equals" data-value="=">=</div>
-        </div>
-    </div>
-
-    <!-- Currency Converter Card -->
-    <div class="card">
-        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Live Currency Converter</h3>
-
-        <div class="p-3 bg-yellow-100 text-yellow-800 rounded-lg text-sm mb-4">
-            <p class="font-semibold">Note:</p>
-            <p>This converter uses sample exchange rates (based on 1 USD) for demonstration.</p>
-        </div>
-
-        <div class="space-y-6">
-            <!-- Amount Input -->
-            <div class="currency-input-group">
-                <label for="amount" class="block text-sm font-medium text-gray-700 mb-2">Amount to Convert</label>
-                <input type="number" id="amount" value="100" placeholder="Enter amount" min="0" oninput="convertCurrency()" class="w-full border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg shadow-sm">
-            </div>
-
-            <!-- From Currency -->
-            <div class="currency-input-group">
-                <label for="from-currency" class="block text-sm font-medium text-gray-700 mb-2">From Currency</label>
-                <select id="from-currency" onchange="convertCurrency()" class="w-full border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg shadow-sm"></select>
-            </div>
-
-            <!-- Swap Button -->
-            <div class="flex justify-center">
-                <button onclick="swapCurrencies()" class="p-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition duration-150 transform hover:scale-105" aria-label="Swap Currencies">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- To Currency -->
-            <div class="currency-input-group">
-                <label for="to-currency" class="block text-sm font-medium text-gray-700 mb-2">To Currency</label>
-                <select id="to-currency" onchange="convertCurrency()" class="w-full border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg shadow-sm"></select>
-            </div>
-
-            <!-- Result Display -->
-            <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200 shadow-md">
-                <p class="text-lg font-semibold text-indigo-700">Converted Result:</p>
-                <p id="conversion-result" class="text-3xl font-bold text-indigo-900 mt-2">100.00 INR</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Stopwatch Card -->
-    <div class="card">
-        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Digital Stopwatch</h3>
-
-        <!-- Stopwatch Display -->
-        <div class="bg-gray-800 rounded-xl p-6 mb-6 text-center border-2 border-gray-300 shadow-inner">
-            <p id="stopwatch-display" class="text-6xl font-mono text-white">00:00:00</p>
-            <p class="text-sm text-gray-400 mt-2">Hours : Minutes : Seconds</p>
-        </div>
-
-        <!-- Stopwatch Controls -->
-        <div class="flex space-x-4 justify-center">
-            <button id="start-stop-btn" onclick="toggleStopwatch()" class="stopwatch-btn stop-start-btn bg-green-500 hover:bg-green-600 text-white flex-1">
-                Start (Shuru)
-            </button>
-            <button id="reset-btn" onclick="resetStopwatch()" class="stopwatch-btn reset-btn flex-1">
-                Reset (Dobara)
-            </button>
-        </div>
-    </div>
-
-</div>
-
-<!-- === AD SENSE SLOT 2: Below Main Content === -->
-<div class="max-w-4xl w-full">
-    <div class="ad-slot" id="ad-slot-2">
-        <!-- ✅ AD UNIT 2 (Large Ad Unit) -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-3454777726397900"
-            data-ad-slot="9876543210" 
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <!-- Replace data-ad-slot with your actual ad slot ID from AdSense -->
-    </div>
-</div>
-<!-- =========================================== -->
-
-
-<!-- Footer/Content area for SEO Content (EXPANDED CONTENT) -->
-<footer class="max-w-4xl w-full mt-12 p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">Our All-in-One Utility: Your Daily Essential Tool</h2>
-    
-    <p class="text-gray-700 leading-relaxed text-base">
-        Hamara yeh **All-in-One utility platform** aapki roz ki zaruraton ko dhyaan mein rakh kar banaya gaya hai. Ek hi jagah par teen zaroori aur fast tools ka hona aapke time aur effort ko bachata hai. AdSense approval ke liye, aur Google search results mein **top ranking** ke liye, yeh detailed content bahut madad karega.
-    </p>
-
-    <!-- Section 1: Calculator Content -->
-    <h3 class="text-xl font-semibold text-blue-700 mt-6 mb-3">1. The Fast and Reliable Online Calculator</h3>
-    <p class="text-gray-700 leading-relaxed text-sm mb-4">
-        Hamara integrated calculator speed aur accuracy ke liye design kiya gaya hai. Yeh **daily calculations** se lekar **complex algebraic problems** tak sab kuch handle karta hai. Chahe aap student hon jo homework solve kar rahe hain, ya koi professional jo budget bana raha hai, yeh tool har situation ke liye ready hai. Ismein basic arithmetic operations (addition, subtraction, multiplication, division) shamil hain aur yeh **instant results** deta hai. Iska clean interface, bade buttons, aur clear display (jo pichla aur current number dono dikhata hai) **error-checking** ko aasan banata hai. Is **scientific-ready design** ke saath, aapko quick math ke liye koi alag application download karne ki zaroorat nahi hai.
-    </p>
-
-    <!-- Section 2: Currency Converter Content -->
-    <h3 class="text-xl font-semibold text-blue-700 mt-6 mb-3">2. Global Currency Conversion (Forex) Tool</h3>
-    <p class="text-gray-700 leading-relaxed text-sm mb-4">
-        **Currency Converter** international travelers, global business professionals, aur online shoppers ke liye ek zaroori tool hai. Yeh aapko US Dollar (**USD**), Euro (**EUR**), Indian Rupee (**INR**), Japanese Yen (**JPY**), aur kai doosri currencies ke beech amount ko **turant convert** karne ki suvidha deta hai. Hum yahan sample rates ka upyog karte hain, lekin iska basic mechanism dynamic aur **live exchange rates** ko handle karne ke liye banaya gaya hai, jisse aapko current **foreign exchange (Forex) values** ka jaldi pata chalta hai. Simple **'Swap' button** se conversion direction ko badalna bahut aasan hai.
-    </p>
-
-    <!-- Section 3: Digital Stopwatch Content -->
-    <h3 class="text-xl font-semibold text-blue-700 mt-6 mb-3">3. Accurate Digital Stopwatch for Productivity</h3>
-    <p class="text-gray-700 leading-relaxed text-sm mb-4">
-        Apne focus ko badhane aur activities ko time karne ke liye hamara **Digital Stopwatch** use karein. Yeh tool time management techniques jaise **Pomodoro sessions**, sports training, cooking, ya kisi bhi task ke time duration ko track karne ke liye perfect hai. Display bahut bada aur padhne mein aasan hai, jo time ko **Hours, Minutes, aur Seconds (HH:MM:SS)** format mein dikhata hai. Clear **Start/Stop** aur **Reset buttons** yeh ensure karte hain ki aap kisi bhi device (desktop ya mobile phone) se sahi measurement le sakte hain. Reliability aur ease of use hamari pehli priority hai.
-    </p>
-
-    <p class="text-gray-700 leading-relaxed text-base mt-6 pt-4 border-t border-gray-200 font-semibold">
-        Hamara lakshya hai ki aapko **instant utility** ek single, mobile-friendly web page se mile.
-    </p>
-</footer>
-
-
-<script>
-    // --- CALCULATOR LOGIC (Tark) ---
-    const previousOperandTextElement = document.getElementById('previous-operand');
-    const currentOperandTextElement = document.getElementById('current-operand');
-    const calculatorButtons = document.querySelectorAll('.calc-btn');
-
-    let currentOperand = '0';
-    let previousOperand = '';
-    let operation = undefined;
-    let waitingForSecondOperand = false;
-
-    function formatNumber(number) {
-        if (number === '') return '';
-        const stringNumber = number.toString();
-        const integerDigits = parseFloat(stringNumber.split('.')[0]);
-        const decimalDigits = stringNumber.split('.')[1];
-        let integerDisplay;
-        if (isNaN(integerDigits)) {
-            integerDisplay = '';
-        } else {
-            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
-        }
-        if (decimalDigits != null) {
-            return `${integerDisplay}.${decimalDigits}`;
-        } else {
-            return integerDisplay;
-        }
-    }
-
-    function updateDisplay() {
-        currentOperandTextElement.innerText = formatNumber(currentOperand);
-        if (operation != null) {
-            const opSymbol = operation === '*' ? '×' : operation === '/' ? '÷' : operation;
-            previousOperandTextElement.innerText = `${formatNumber(previousOperand)} ${opSymbol}`;
-        } else {
-            previousOperandTextElement.innerText = '';
-        }
-    }
-
-    function appendNumber(number) {
-        if (waitingForSecondOperand) {
-            currentOperand = number;
-            waitingForSecondOperand = false;
-            return;
-        }
-
-        if (number === '.' && currentOperand.includes('.')) return;
-        if (currentOperand === '0' && number !== '.') {
-            currentOperand = number.toString();
-        } else {
-            currentOperand = currentOperand.toString() + number.toString();
-        }
-    }
-
-    function clear() {
-        currentOperand = '0';
-        previousOperand = '';
-        operation = undefined;
-        waitingForSecondOperand = false;
-    }
-
-    function deleteLast() {
-        if (waitingForSecondOperand) return;
-        currentOperand = currentOperand.toString().slice(0, -1);
-        if (currentOperand === '') {
-            currentOperand = '0';
-        }
-    }
-
-    function chooseOperation(selectedOperation) {
-        if (currentOperand === '') return;
-        if (previousOperand !== '') {
-            compute();
-        }
-        operation = selectedOperation;
-        previousOperand = currentOperand;
-        waitingForSecondOperand = true;
-    }
-
-    function compute() {
-        let computation;
-        const prev = parseFloat(previousOperand);
-        const current = parseFloat(currentOperand);
-
-        if (isNaN(prev) || isNaN(current)) return;
-
-        switch (operation) {
-            case '+': computation = prev + current; break;
-            case '-': computation = prev - current; break;
-            case '*': computation = prev * current; break;
-            case '/':
-                if (current === 0) {
-                    currentOperand = 'Error';
-                    previousOperand = '';
-                    operation = undefined;
-                    return;
-                }
-                computation = prev / current;
-                break;
-            default: return;
-        }
-        currentOperand = computation.toString();
-        operation = undefined;
-        previousOperand = '';
-        waitingForSecondOperand = false;
-    }
-
-    calculatorButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const action = button.getAttribute('data-action');
-            const value = button.getAttribute('data-value');
-
-            switch (action) {
-                case 'number':
-                case 'decimal': appendNumber(value); break;
-                case 'operator': chooseOperation(value); break;
-                case 'equals': compute(); break;
-                case 'clear': clear(); break;
-                case 'delete': deleteLast(); break;
-            }
-            updateDisplay();
-        });
-    });
-
-    // --- CURRENCY CONVERTER LOGIC (Tark) ---
-    const exchangeRates = {
-        'USD': 1.00,
-        'EUR': 0.86,
-        'GBP': 0.73,
-        'JPY': 114.00,
-        'CAD': 1.25,
-        'AUD': 1.35,
-        'INR': 83.50, // Indian Rupee
-        'AED': 3.67,
-    };
-
-    const currencyList = Object.keys(exchangeRates).map(code => ({
-        code: code,
-        name: code === 'USD' ? 'US Dollar' :
-              code === 'EUR' ? 'Euro' :
-              code === 'GBP' ? 'British Pound' :
-              code === 'JPY' ? 'Japanese Yen' :
-              code === 'CAD' ? 'Canadian Dollar' :
-              code === 'AUD' ? 'Australian Dollar' :
-              code === 'INR' ? 'Indian Rupee' :
-              code === 'AED' ? 'UAE Dirham' : code
-    }));
-
-    const fromSelect = document.getElementById('from-currency');
-    const toSelect = document.getElementById('to-currency');
-    const amountInput = document.getElementById('amount');
-    const resultDisplay = document.getElementById('conversion-result');
-
-    function populateCurrencies() {
-        currencyList.forEach(currency => {
-            const optionFrom = document.createElement('option');
-            optionFrom.value = currency.code;
-            optionFrom.textContent = `${currency.code} - ${currency.name}`;
-            fromSelect.appendChild(optionFrom);
-
-            const optionTo = document.createElement('option');
-            optionTo.value = currency.code;
-            optionTo.textContent = `${currency.code} - ${currency.name}`;
-            toSelect.appendChild(optionTo);
-        });
-
-        fromSelect.value = 'USD';
-        toSelect.value = 'INR';
-    }
-
-    function convertCurrency() {
-        const amount = parseFloat(amountInput.value);
-        const fromCurrency = fromSelect.value;
-        const toCurrency = toSelect.value;
-
-        if (isNaN(amount) || amount <= 0) {
-            resultDisplay.textContent = 'Please enter a valid amount.';
-            return;
-        }
-
-        const usdRate_FROM = exchangeRates[fromCurrency];
-        const usdRate_TO = exchangeRates[toCurrency];
-
-        if (!usdRate_FROM || !usdRate_TO) {
-            resultDisplay.textContent = 'Error: Currency rates missing.';
-            return;
-        }
-
-        // Conversion logic: (Amount / FROM_Rate_to_USD) * TO_Rate_to_USD
-        const convertedAmount = (amount / usdRate_FROM) * usdRate_TO;
-
-        const formattedResult = convertedAmount.toFixed(2);
-        resultDisplay.textContent = `${formattedResult} ${toCurrency}`;
-    }
-
-    function swapCurrencies() {
-        const temp = fromSelect.value;
-        fromSelect.value = toSelect.value;
-        toSelect.value = temp;
-        convertCurrency();
-    }
-    
-    // --- STOPWATCH LOGIC (Tark) ---
-    
-    const stopwatchDisplay = document.getElementById('stopwatch-display');
-    const startStopBtn = document.getElementById('start-stop-btn');
-    
-    let timerInterval;
-    let startTime = 0;
-    let elapsedTime = 0;
-    let isRunning = false;
-    
-    function formatTime(ms) {
-        const totalSeconds = Math.floor(ms / 1000);
-        const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-        const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-        const seconds = String(totalSeconds % 60).padStart(2, '0');
-        return `${hours}:${minutes}:${seconds}`;
-    }
-    
-    function printTime() {
-        const currentTime = Date.now();
-        elapsedTime = currentTime - startTime;
-        stopwatchDisplay.textContent = formatTime(elapsedTime);
-    }
-    
-    function startStopwatch() {
-        if (isRunning) return;
-        
-        startTime = Date.now() - elapsedTime;
-        
-        timerInterval = setInterval(printTime, 1000);
-        isRunning = true;
-        
-        startStopBtn.textContent = 'Stop (Rokein)';
-        startStopBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
-        startStopBtn.classList.add('bg-red-500', 'hover:bg-red-600');
-    }
-    
-    function stopStopwatch() {
-        if (!isRunning) return;
-
-        clearInterval(timerInterval);
-        isRunning = false;
-        
-        startStopBtn.textContent = 'Start (Shuru)';
-        startStopBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
-        startStopBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-    }
-    
-    function resetStopwatch() {
-        stopStopwatch();
-        elapsedTime = 0;
-        stopwatchDisplay.textContent = formatTime(0);
-        
-        startStopBtn.textContent = 'Start (Shuru)';
-        startStopBtn.classList.remove('bg-red-500', 'hover:bg-red-600');
-        startStopBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-    }
-
-    function toggleStopwatch() {
-        if (isRunning) {
-            stopStopwatch();
-        } else {
-            startStopwatch();
-        }
-    }
-
-    // --- INITIALIZATION (Shuruaat) ---
-    window.onload = () => {
-        updateDisplay();
-        populateCurrencies();
-        convertCurrency();
-    };
-
-</script>
-
-</body>
-</html><!-- AD SLOT PLACEHOLDER - Isi jagah par AdSense ka code aayega -->
-<div class="my-6 p-4 text-center border-dashed border-2 border-indigo-300 bg-indigo-50 rounded-lg">
-    <p class="text-indigo-700 font-semibold">ADVERTISEMENT SLOT HERE (AdSense Approval ke baad code paste karein)</p>
-    <p class="text-sm text-indigo-500">For maximum visibility on desktop and mobile.</p>
-</div>
-<!-- END AD SLOT PLACEHOLDER -->
