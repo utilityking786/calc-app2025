@@ -256,7 +256,295 @@
                 else if (bmi < 30) statusDiv.innerText = "Overweight";
                 else statusDiv.innerText = "Obese";
             }
-        }
+        }import React, { useState, useRef, useEffect } from 'react';
+import { 
+  Camera, 
+  Calculator, 
+  FileImage, 
+  FileText, 
+  Download, 
+  RefreshCcw, 
+  TrendingUp, 
+  ShieldCheck,
+  Building2,
+  Trash2,
+  Briefcase,
+  Zap,
+  Globe,
+  Coins,
+  ArrowRightLeft,
+  Percent,
+  CheckCircle2,
+  AlertCircle
+} from 'lucide-react';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('converter');
+  const [appId] = useState(typeof __app_id !== 'undefined' ? __app_id : 'bh-utility-hub');
+
+  // --- Image Converter State ---
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const fileInputRef = useRef(null);
+
+  // --- Salary Calculator State ---
+  const [salaryData, setSalaryData] = useState({ basic: '', allowances: '', nationality: 'expat' });
+  const [salaryResult, setSalaryResult] = useState(null);
+
+  // --- Utility Tools State ---
+  const [vatAmount, setVatAmount] = useState('');
+  const [vatRate, setVatRate] = useState(10);
+  const [currencyAmount, setCurrencyAmount] = useState('');
+  const [targetCurrency, setTargetCurrency] = useState('USD');
+  
+  const exchangeRates = { USD: 2.65, INR: 220.5, PKR: 740.2, EUR: 2.44 };
+
+  // --- Logic Functions ---
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) setPreviewUrl(URL.createObjectURL(file));
+  };
+
+  const downloadImage = (format) => {
+    setIsProcessing(true);
+    const canvas = document.createElement('canvas');
+    const img = new Image();
+    img.onload = () => {
+      canvas.width = img.width; canvas.height = img.height;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      const link = document.createElement('a');
+      link.download = `BH_Doc_${Date.now()}.${format}`;
+      link.href = canvas.toDataURL(format === 'pdf' ? 'image/jpeg' : `image/${format}`);
+      link.click();
+      setTimeout(() => setIsProcessing(false), 500);
+    };
+    img.src = previewUrl;
+  };
+
+  const calculateSalary = () => {
+    const basic = parseFloat(salaryData.basic) || 0;
+    const gosiBase = Math.min(basic, 4000);
+    const gosi = salaryData.nationality === 'bahraini' ? gosiBase * 0.08 : gosiBase * 0.01;
+    const total = basic + (parseFloat(salaryData.allowances) || 0);
+    setSalaryResult({ gross: total, gosi: gosi.toFixed(3), net: (total - gosi).toFixed(3) });
+  };
+
+  return (
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans pb-10">
+      {/* Navigation */}
+      <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="bg-red-600 p-2 rounded-xl text-white shadow-lg shadow-red-200">
+              <Zap size={18} fill="currentColor" />
+            </div>
+            <span className="font-black text-xl tracking-tighter uppercase">Bahrain<span className="text-red-600">Pro</span></span>
+          </div>
+          <div className="hidden md:flex gap-1 bg-slate-100 p-1 rounded-2xl">
+            {['converter', 'calculator', 'utilities'].map((tab) => (
+              <button 
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-white text-red-600 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="md:hidden flex gap-2">
+             <button onClick={() => setActiveTab('converter')} className={`p-2 rounded-lg ${activeTab === 'converter' ? 'text-red-600 bg-red-50' : ''}`}><FileImage size={20}/></button>
+             <button onClick={() => setActiveTab('calculator')} className={`p-2 rounded-lg ${activeTab === 'calculator' ? 'text-red-600 bg-red-50' : ''}`}><Calculator size={20}/></button>
+             <button onClick={() => setActiveTab('utilities')} className={`p-2 rounded-lg ${activeTab === 'utilities' ? 'text-red-600 bg-red-50' : ''}`}><Zap size={20}/></button>
+          </div>
+        </div>
+      </nav>
+
+      <main className="max-w-4xl mx-auto p-4 md:pt-12">
+        
+        {/* TAB 1: CONVERTER */}
+        {activeTab === 'converter' && (
+          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-5">
+            <header className="text-center">
+              <h1 className="text-4xl font-black tracking-tight mb-2">Image Converter</h1>
+              <p className="text-slate-500 font-medium italic">Prepare documents for LMRA & Tamkeen portals</p>
+            </header>
+
+            {!previewUrl ? (
+              <div 
+                onClick={() => fileInputRef.current.click()}
+                className="border-4 border-dashed border-slate-200 bg-white rounded-[3rem] p-16 text-center cursor-pointer hover:border-red-400 hover:bg-red-50/50 transition-all group"
+              >
+                <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
+                <div className="w-24 h-24 bg-red-50 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-6 transition-transform">
+                  <Camera className="text-red-600" size={48} />
+                </div>
+                <h2 className="text-2xl font-black text-slate-800">Tap to Upload Photo</h2>
+                <p className="text-slate-400 mt-3 font-medium">PNG, JPG or Screenshot of Passport/ID</p>
+              </div>
+            ) : (
+              <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200 overflow-hidden border border-slate-100 p-6 md:p-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-slate-50 aspect-[4/3]">
+                    <img src={previewUrl} className="w-full h-full object-contain" />
+                    <button onClick={() => setPreviewUrl(null)} className="absolute top-4 right-4 bg-white shadow-xl p-3 rounded-2xl text-red-600 hover:bg-red-600 hover:text-white transition"><Trash2 size={20}/></button>
+                  </div>
+                  <div className="flex flex-col justify-center gap-4">
+                    <button onClick={() => downloadImage('pdf')} className="bg-red-600 text-white p-5 rounded-2xl font-black flex items-center justify-center gap-3 hover:scale-[1.02] transition shadow-lg shadow-red-200">
+                      <FileText size={24}/> SAVE AS PDF
+                    </button>
+                    <button onClick={() => downloadImage('jpg')} className="bg-slate-900 text-white p-5 rounded-2xl font-black flex items-center justify-center gap-3 hover:scale-[1.02] transition shadow-lg">
+                      <FileImage size={24}/> DOWNLOAD JPG
+                    </button>
+                    <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 flex gap-3 italic text-xs text-blue-700">
+                      <AlertCircle size={16} className="shrink-0" />
+                      Note: Most government portals in Bahrain require PDF format for CPR copies.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 2: CALCULATOR */}
+        {activeTab === 'calculator' && (
+          <div className="max-w-2xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-5">
+            <header className="text-center">
+              <h1 className="text-4xl font-black tracking-tight mb-2">Salary Calculator</h1>
+              <p className="text-slate-500 font-medium italic">GOSI-compliant payroll estimations</p>
+            </header>
+
+            <div className="bg-white rounded-[2.5rem] shadow-2xl p-8 border border-slate-100">
+              <div className="space-y-6">
+                <div className="flex bg-slate-100 p-1 rounded-2xl">
+                  {['expat', 'bahraini'].map(t => (
+                    <button 
+                      key={t}
+                      onClick={() => setSalaryData({...salaryData, nationality: t})}
+                      className={`flex-1 py-3 rounded-xl font-black text-sm uppercase tracking-widest transition-all ${salaryData.nationality === t ? 'bg-white text-red-600 shadow-sm' : 'text-slate-400'}`}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-400 uppercase ml-2">Basic Salary (BHD)</label>
+                    <input type="number" value={salaryData.basic} onChange={e => setSalaryData({...salaryData, basic: e.target.value})} className="w-full p-5 bg-slate-50 rounded-2xl border border-slate-200 font-bold focus:ring-2 focus:ring-red-500 focus:outline-none" placeholder="0.000" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-400 uppercase ml-2">Allowances</label>
+                    <input type="number" value={salaryData.allowances} onChange={e => setSalaryData({...salaryData, allowances: e.target.value})} className="w-full p-5 bg-slate-50 rounded-2xl border border-slate-200 font-bold focus:ring-2 focus:ring-red-500 focus:outline-none" placeholder="0.000" />
+                  </div>
+                </div>
+                <button onClick={calculateSalary} className="w-full bg-red-600 text-white p-5 rounded-2xl font-black text-xl hover:shadow-xl hover:scale-[1.01] transition">CALCULATE PAY</button>
+                
+                {salaryResult && (
+                  <div className="mt-8 space-y-4 animate-in zoom-in-95 duration-300">
+                    <div className="flex justify-between items-center text-slate-500 font-bold px-2"><span>Gross Total</span><span>{salaryResult.gross} BHD</span></div>
+                    <div className="flex justify-between items-center text-red-600 font-bold px-2"><span>GOSI Deduction</span><span>-{salaryResult.gosi} BHD</span></div>
+                    <div className="bg-green-600 text-white p-6 rounded-3xl flex justify-between items-center shadow-xl shadow-green-100">
+                      <div><p className="text-[10px] font-black uppercase opacity-70">Monthly Net Take-home</p><p className="text-3xl font-black">{salaryResult.net} BHD</p></div>
+                      <div className="bg-white/20 p-3 rounded-full"><Coins size={32}/></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: UTILITY TOOLS */}
+        {activeTab === 'utilities' && (
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-5">
+            <header className="text-center">
+              <h1 className="text-4xl font-black tracking-tight mb-2">Utility Toolkit</h1>
+              <p className="text-slate-500 font-medium italic">Essential tools for daily life in Bahrain</p>
+            </header>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* VAT CALCULATOR */}
+              <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-amber-100 p-2 rounded-xl text-amber-600"><Percent size={20}/></div>
+                  <h3 className="font-black text-xl tracking-tight">VAT Calculator</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex gap-2">
+                    {[5, 10].map(r => (
+                      <button key={r} onClick={() => setVatRate(r)} className={`flex-1 py-2 rounded-lg font-bold border-2 transition ${vatRate === r ? 'border-amber-600 bg-amber-50 text-amber-600' : 'border-slate-100 text-slate-400'}`}>{r}%</button>
+                    ))}
+                  </div>
+                  <input type="number" value={vatAmount} onChange={e => setVatAmount(e.target.value)} placeholder="Amount in BHD" className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200" />
+                  {vatAmount && (
+                    <div className="bg-slate-50 p-4 rounded-xl border-l-4 border-amber-600 flex justify-between">
+                      <span className="text-slate-500 font-bold">Total with VAT</span>
+                      <span className="font-black text-slate-800">{(parseFloat(vatAmount) * (1 + vatRate/100)).toFixed(3)} BHD</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* CURRENCY CONVERTER */}
+              <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-indigo-100 p-2 rounded-xl text-indigo-600"><ArrowRightLeft size={20}/></div>
+                  <h3 className="font-black text-xl tracking-tight">Quick Exchange</h3>
+                </div>
+                <div className="space-y-4">
+                   <select 
+                    value={targetCurrency} 
+                    onChange={e => setTargetCurrency(e.target.value)}
+                    className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200 font-bold appearance-none cursor-pointer"
+                   >
+                     {Object.keys(exchangeRates).map(curr => <option key={curr} value={curr}>{curr} (Official Market Approx)</option>)}
+                   </select>
+                   <input type="number" value={currencyAmount} onChange={e => setCurrencyAmount(e.target.value)} placeholder="Amount in BHD" className="w-full p-4 bg-slate-50 rounded-xl border border-slate-200 font-bold" />
+                   {currencyAmount && (
+                     <div className="bg-indigo-600 text-white p-4 rounded-xl flex justify-between items-center shadow-lg shadow-indigo-100">
+                       <span className="font-bold opacity-80">Convert to {targetCurrency}</span>
+                       <span className="text-2xl font-black">{(parseFloat(currencyAmount) * exchangeRates[targetCurrency]).toLocaleString()}</span>
+                     </div>
+                   )}
+                </div>
+              </div>
+
+              {/* ELECTRICITY / EWA GUIDE */}
+              <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100 col-span-full">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-green-100 p-2 rounded-xl text-green-600"><Building2 size={20}/></div>
+                  <h3 className="font-black text-xl tracking-tight">Quick Links & Guides</h3>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { label: 'EWA Bills', color: 'text-blue-600' },
+                    { label: 'Traffic Fines', color: 'text-red-600' },
+                    { label: 'LMRA Portal', color: 'text-indigo-600' },
+                    { label: 'Sijilat', color: 'text-emerald-600' }
+                  ].map(item => (
+                    <div key={item.label} className="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-center hover:bg-slate-100 transition cursor-pointer">
+                      <p className={`text-xs font-black ${item.color} uppercase tracking-tighter`}>{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer className="mt-12 py-12 bg-white border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 flex flex-col items-center gap-4">
+          <div className="flex items-center gap-2 grayscale opacity-50">
+            <Building2 size={16} />
+            <span className="font-black text-sm tracking-tighter">BH PRO UTILITIES</span>
+          </div>
+          <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em]">Designed for Modern Bahrain Professionals • 2024</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
     </script>
 </body>
 </html>
